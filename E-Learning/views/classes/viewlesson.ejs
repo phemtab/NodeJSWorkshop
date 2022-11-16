@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor</title>
+</head>
+<body>
+    <%- include('../layout') %>
+    <div class="container">
+    <h2 align="center"></h2>
+    <h3>Lesson</h3>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">LessonID</th>
+            <th scope="col">LessonName</th>
+            <th scope="col">View</th>
+          </tr>
+        </thead>
+        <tbody>
+            <!-- กระจายข้อมูลออกมาจากค่าที่ส่งมาจาก Route -->
+          <% if(className.lesson) { %>
+            <% for (var result of className.lesson ){ %>
+                <tr>
+                    <td><%= result.lesson_number %></td>
+                    <td><%= result.lesson_title %></td>
+                    <td><a href="/classes/<%=className.class_id %>/lesson/<%= result.lesson_number %>" class="btn btn-primary">View</a></td>
+
+                </tr>
+            <% } %>
+          <% } %>
+
+        </tbody>
+      </table>
+
+    
+    </div>
+</body>
+</html>

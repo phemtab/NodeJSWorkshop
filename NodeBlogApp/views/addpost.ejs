@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include ('layout') %>
+
+    
+
+    <div class="container">
+        <h2 class="my-4" align="center">เขียนบทความ</h2>
+        <% if(locals.errors){%>
+            <ul class="alert alert-danger">
+                <% Object.values(errors).forEach(function(error){%>
+                        <li><%= error.msg %></li>
+                <%})%>
+            </ul>
+        <%}%>
+
+        <form class="" action="/post/add" method="post">
+            <div class="form-group">
+                <label>หัวข้อ</label>
+                <input type="text" name="title" value="" class="form-control">
+            </div>
+            <%if(locals.categories) {%>
+            <div class="form-group">
+                <label>ประเภทบทความ</label>
+                <select class="form-control" name="category">
+                    <% categories.forEach(function(category){ %>
+                        <option value="<%=category.name%>"><%=category.name%></option>
+                    <% });%>  
+                </select>
+            </div>
+            <% } %>
+
+            <div class="form-group">
+                <label>เนื้อหา</label>
+                <textarea name="content" rows="8" cols="80"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>ภาพปก</label>
+                <input type="text" name="img" value="" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>ผู้เขียน</label>
+                <input type="text" name="author" value="" class="form-control">
+            </div>
+            
+
+            <input type="submit" name="" value="บันทึก" class="btn btn-primary">
+
+        </form>
+
+    </div>
+    <script type="text/javascript">
+        CKEDITOR.replace('content');
+    </script>
+</body>
+</html>

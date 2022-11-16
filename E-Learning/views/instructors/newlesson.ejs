@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor</title>
+</head>
+<body>
+    <%- include('../layout') %>
+    <div class="container">
+    <h2 align="center">Class : <%= class_id %> </h2>
+    <br>
+    <h3>Add Lesson</h3>
+    <form class="form-group" action="/instructors/classes/<%= class_id %>/lession/new" method="post">
+
+            <div class="form-group">
+                <label>บทที่</label>
+                <input type="text" name="lesson_number" value="" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>หัวข้อ</label>
+                <input type="text" name="lesson_title" value="" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label>รายละเอียด</label>
+                <textarea type="text" name="lesson_body" rows="8" cols="80" class="form-control"></textarea>
+            </div>
+
+            <input type="hidden" name="instructor" value="">
+            <input type="submit" name="" value="เพิ่มบทเรียน" class="btn btn-primary">
+
+     </form>
+    </div>
+</body>
+</html>

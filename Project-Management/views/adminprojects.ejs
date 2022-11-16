@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%-include ('layout') %>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <h3 class="my-4" align="center">Dashboard</h3>
+                <div class="list-group">
+                    <a href="/admin/projects/add" class="btn btn-primary">เพิ่มโปรเจค</a>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <h3 align="center" class="my-4">Admin Management</h3>
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">ชื่อโปรเจค</th>
+                        <th scope="col">วันเริ่มโปรเจค</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% projects.forEach(function(project){ %>
+                      <tr>
+                        <td><%=project.name %></td>
+                        <td><%=project.date %></td>
+                        <td><a href="/admin/projects/edit/<%=project._id%>" class="btn btn-primary">Edit</a></td>
+                        <td><a href="/admin/projects/delete/<%=project._id%>" date-id="<%=project._id%>" class="btn btn-danger delete-project">Delete</a></td>
+                      </tr>
+                      <% }) %>
+
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.delete-project').on('click',function(){
+            var id = $(this).data(id);
+            var url = "/admin/projects/delete/"+id;
+            if(confirm("คุณต้องการลบข้อมูลหรือไม่?")){
+                $.ajax({
+                    url:url,
+                    type:'GET',
+                    success:function(result){
+                        console.log(result);
+                    },error:function(err){
+                        console.log(err);
+                    }
+                })
+            }
+        });
+    });
+</script>
+</html>
